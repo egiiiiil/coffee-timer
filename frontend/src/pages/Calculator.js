@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import sendToDB from '../utils/sendToDB.js'
 
-import Ratio from './Ratio.js'
-import Measurement from './Measurement.js'
-import ExtraInfo from './ExtraInfo.js'
-import LikeButton from './LikeButton.js'
-import SaveButton from './SaveButton.js'
+import Ratio from '../components/Ratio.js'
+import Measurement from '../components/Measurement.js'
+import ExtraInfo from '../components/ExtraInfo.js'
+import LikeButton from '../components/LikeButton.js'
+import SaveButton from '../components/SaveButton.js'
 
 function Calculator() {
 	const [coffeeRatio, setCoffeeRatio] = useState(1)
@@ -80,13 +80,10 @@ function Calculator() {
 	useEffect(() => {
 		console.log(`Saved valuie is: ${saveRecipe}`)
 	}, [saveRecipe])
+
 	return (
 		<>
-			<div
-				className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 border border-gray-200
-
-'
-			>
+			<div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
 				{/* <LikeButton /> */}
 				<form className='w-full flex items-center justify-between flex-col'>
 					<Ratio
