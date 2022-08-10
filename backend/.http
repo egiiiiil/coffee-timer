@@ -1,1 +1,13 @@
 GET http://localhost:8080/api/recipes
+
+###
+POST http://localhost:8080/api/recipes
+Content-Type: application/x-www-form-urlencoded
+
+text="First Goal"
+
+###
+PUT http://localhost:8080/api/recipes/12341234
+
+###
+DELETE  http://localhost:8080/api/recipes/12341234
