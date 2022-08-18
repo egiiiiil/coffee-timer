@@ -5,7 +5,7 @@ const uri = `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@coff
 const client = new mongodb.MongoClient(uri)
 client.connect((err, db) => {
 	if (err || !db) {
-		return err.message
+		console.log(err.message)
 	} else if (db) {
 		console.log(`Successfully connected to MongoDB.`.cyan)
 	}
