@@ -2,12 +2,33 @@ GET http://localhost:8080/api/recipes
 
 ###
 POST http://localhost:8080/api/recipes
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-text="First Goal"
+{
+	"ratio": [1, 23],
+	"coffeeToWater": [1, 23],
+	"timer": "4:00",
+	"method": "v60",
+	"directions": "",
+	"author": "egiiiiil",
+	"name": "Egil's Test not dog 4",
+	"beans": "3rd wave coffee"
+}
 
 ###
-PUT http://localhost:8080/api/recipes/12341234
+PUT http://localhost:8080/api/recipes/62fdfc6dd74c1b811cf16611
+Content-Type: application/json
+
+{
+	"ratio": [1, 23],
+	"coffeeToWater": [1, 23],
+	"timer": "4:00",
+	"method": "v60",
+	"directions": "",
+	"author": "egiiiiil",
+	"name": "Egil's Test not doggos",
+	"beans": "3rd wave coffee"
+}
 
 ###
-DELETE  http://localhost:8080/api/recipes/12341234
+DELETE  http://localhost:8080/api/recipes/62fe367edb9777a32c915048
