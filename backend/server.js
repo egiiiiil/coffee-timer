@@ -3,6 +3,7 @@ import 'dotenv/config'
 import 'colors'
 import cors from 'cors'
 import recipeRouter from './routers/recipeRoute.js'
+import userRouter from './routers/userRoute.js'
 import { errorHandler } from './middleware/errorMiddleware.js'
 
 const PORT = process.env.PORT || 8080
@@ -19,6 +20,7 @@ app.use(
 )
 
 app.use('/api/recipes', recipeRouter)
+app.use('/api/users', userRouter)
 
 app.use(errorHandler)
 

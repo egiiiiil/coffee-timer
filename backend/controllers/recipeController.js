@@ -2,18 +2,34 @@ import collections from '../config/db.js'
 import mongodb from 'mongodb'
 
 const recipeCollection = collections.recipe
+const userCollection = collections.users
 
 // @desc		Get Recipes
 // @route		GET /api/recipes
-// @access	Private
+// @access	Public
 const getRecipes = async (req, res) => {
-	let filter = {}
+	/* 	let filter = {}
 	const query = req.query
 	if (query.category) {
 		filter = { type: query.category }
-	}
+	} */
 	try {
 		const items = await recipeCollection.find({}).toArray()
+		res.status(200).json(items)
+	} catch (err) {
+		console.log(err.message)
+	}
+}
+// @desc		Get Recipes
+// @route		GET /api/recipes
+// @access	Private
+const getMyRecipes = async (req, res) => {
+	console.log(req.user._id)
+	try {
+		const items = await recipeCollection
+			.find({ author: new mongodb.ObjectId(req.user?._id) })
+			.toArray()
+		console.log(items)
 		res.status(200).json(items)
 	} catch (err) {
 		console.log(err.message)
@@ -24,29 +40,23 @@ const getRecipes = async (req, res) => {
 // @route		POST /api/recipes
 // @access	Private
 const postRecipe = async (req, res) => {
+	console.log('aaaaa', req.user._id)
 	if (!req.body) {
 		res.status(400)
 		throw new Error('Please add a post')
 	}
 	console.log('B', req.body)
 	try {
-		const {
-			ratio,
-			coffeeToWater,
-			timer,
-			method,
-			directions,
-			author,
-			name,
-			beans,
-		} = req.body
+		const { ratio, coffeeToWater, timer, method, directions, name, beans } =
+			req.body
+		const { author } = req.user._id
 		const recipe = await recipeCollection.insertOne({
 			ratio: ratio,
 			coffeeToWater: coffeeToWater,
 			timer: timer,
 			method: method,
 			directions: directions,
-			author: author,
+			author: new mongodb.ObjectId(req.user?._id),
 			name: name,
 			beans: beans,
 		})
@@ -70,16 +80,26 @@ const updateRecipe = async (req, res) => {
 			res.status(400)
 			throw new Error('Recipe not found')
 		}
-		const {
-			ratio,
-			coffeeToWater,
-			timer,
-			method,
-			directions,
-			author,
-			name,
-			beans,
-		} = req.body
+
+		const { ratio, coffeeToWater, timer, method, directions, name, beans } =
+			req.body
+
+		const user = await userCollection.find({
+			_id: new mongodb.ObjectId(req.user._id),
+		})
+
+		// Check for user
+		if (!user) {
+			res.status(401)
+			throw new Error('User not found')
+		}
+
+		// Make sure that the logged in user maches the recipe author
+		if (recipe.author.toString() !== req.user._id.toString()) {
+			res.status(401)
+			throw new Error('User not authorised')
+		}
+
 		const updatedRecipe = await recipeCollection.findOneAndUpdate(
 			{ _id: new mongodb.ObjectId(recipeId) },
 			{
@@ -89,12 +109,9 @@ const updateRecipe = async (req, res) => {
 					timer: timer,
 					method: method,
 					directions: directions,
-					author: author,
 					name: name,
 					beans: beans,
 				},
-				upsert: true,
-				returnNewDocument: true,
 			}
 		)
 
@@ -118,6 +135,22 @@ const deleteRecipe = async (req, res) => {
 			throw new Error('Recipe not found')
 		}
 
+		const user = await userCollection.find({
+			_id: new mongodb.ObjectId(req.user._id),
+		})
+
+		// Check for user
+		if (!user) {
+			res.status(401)
+			throw new Error('User not found')
+		}
+
+		// Make sure that the logged in user maches the recipe author
+		if (recipe.author.toString() !== req.user._id.toString()) {
+			res.status(401)
+			throw new Error('User not authorised')
+		}
+
 		const deletedRecipe = await recipeCollection.deleteOne({
 			_id: new mongodb.ObjectId(recipeId),
 		})
@@ -129,4 +162,4 @@ const deleteRecipe = async (req, res) => {
 	//res.status(200).json({ message: `Delete Recipe ${req.params.id}` })
 }
 
-export { getRecipes, postRecipe, updateRecipe, deleteRecipe }
+export { getRecipes, getMyRecipes, postRecipe, updateRecipe, deleteRecipe }
