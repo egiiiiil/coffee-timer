@@ -1,8 +1,14 @@
+# Recipe ########### 
 GET http://localhost:8080/api/recipes
+
+###
+GET http://localhost:8080/api/recipes/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDc1MDA0MjVmNDdiMDVlY2MzOTY4YyIsImlhdCI6MTY2MTQyMzY1NywiZXhwIjoxNjY0MDE1NjU3fQ.tpuz5JcWFfQW4SACl7WkNSjbV1N90m_P4YT7ckEOUB8
 
 ###
 POST http://localhost:8080/api/recipes
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDc1MDA0MjVmNDdiMDVlY2MzOTY4YyIsImlhdCI6MTY2MTQyMzY1NywiZXhwIjoxNjY0MDE1NjU3fQ.tpuz5JcWFfQW4SACl7WkNSjbV1N90m_P4YT7ckEOUB8
 
 {
 	"ratio": [1, 23],
@@ -10,25 +16,49 @@ Content-Type: application/json
 	"timer": "4:00",
 	"method": "v60",
 	"directions": "",
-	"author": "egiiiiil",
-	"name": "Egil's Test not dog 4",
+	"name": "Egil's Test not dog asdfasasdfasdfdfasdf5",
 	"beans": "3rd wave coffee"
 }
 
 ###
-PUT http://localhost:8080/api/recipes/62fdfc6dd74c1b811cf16611
+PUT http://localhost:8080/api/recipes/63077270c0af9f98191beda8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDc1MDA0MjVmNDdiMDVlY2MzOTY4YyIsImlhdCI6MTY2MTQyMzY1NywiZXhwIjoxNjY0MDE1NjU3fQ.tpuz5JcWFfQW4SACl7WkNSjbV1N90m_P4YT7ckEOUB8
+
+{
+	"ratio": [1, 23],
+	"coffeeToWater": [1, 23],
+	"timer": "4:00",
+	"method": "v60",
+	"directions": "",
+	"name": "Egil's Test",
+	"beans": "3rd wave coffee"
+}
+
+###
+DELETE  http://localhost:8080/api/recipes/63077270c0af9f98191beda8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDc1MDA0MjVmNDdiMDVlY2MzOTY4YyIsImlhdCI6MTY2MTQyMzY1NywiZXhwIjoxNjY0MDE1NjU3fQ.tpuz5JcWFfQW4SACl7WkNSjbV1N90m_P4YT7ckEOUB8
+
+# User ###########
+###
+POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-	"ratio": [1, 23],
-	"coffeeToWater": [1, 23],
-	"timer": "4:00",
-	"method": "v60",
-	"directions": "",
-	"author": "egiiiiil",
-	"name": "Egil's Test not doggos",
-	"beans": "3rd wave coffee"
+	"username": "notegiiiiil",
+	"email": "egil@alsoasdasdnew.se",
+	"password": "egil1234"
 }
 
 ###
-DELETE  http://localhost:8080/api/recipes/62fe367edb9777a32c915048
+POST http://localhost:8080/api/users/login
+Content-Type: application/json
+
+{
+	"email": "egil@alsoasdasdnew.se",
+	"password": "egil1234"
+}
+
+###
+GET http://localhost:8080/api/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDc1MDA0MjVmNDdiMDVlY2MzOTY4YyIsImlhdCI6MTY2MTQyMzY1NywiZXhwIjoxNjY0MDE1NjU3fQ.tpuz5JcWFfQW4SACl7WkNSjbV1N90m_P4YT7ckEOUB8

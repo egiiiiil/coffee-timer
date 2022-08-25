@@ -14,7 +14,7 @@ client.connect((err, db) => {
 const database = client.db('coffee-timer')
 const collections = {
 	recipe: database.collection('recipe'),
-	users: database.collection('users'),
+	users: database.collection('user'),
 }
 
 client.close()
