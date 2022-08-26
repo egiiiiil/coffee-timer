@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import sendToDB from '../utils/sendToDB.js'
+// import sendToDB from '../utils/sendToDB.js'
+import { postRecipe } from '../api/api.js'
 
 import Ratio from '../components/Ratio.js'
 import Measurement from '../components/Measurement.js'
@@ -8,6 +9,17 @@ import LikeButton from '../components/LikeButton.js'
 import SaveButton from '../components/SaveButton.js'
 
 function Calculator() {
+	// const [form, setForm] = useState({
+	// 	ratio: [1, 16],
+	// 	coffeeToWater: [16, 256],
+	// 	timer: '04:00',
+	// 	method: 'v60',
+	// 	directions: '',
+	// 	author: 'egiiiiil',
+	// 	name: "Egil's Standard",
+	// 	beans: '3rd wave coffee',
+	// })
+	// console.log('bbbb', form.ratio[0])
 	const [coffeeRatio, setCoffeeRatio] = useState(1)
 	const [waterRatio, setWaterRatio] = useState(16)
 
@@ -19,7 +31,7 @@ function Calculator() {
 
 	const [comment, setComment] = useState('')
 
-	const [saveRecipe, setSaveRecipe] = useState(sendToDB)
+	// const [saveRecipe, setSaveRecipe] = useState(sendToDB)
 
 	const coffeeRatioInputValue = (e) => {
 		e.preventDefault()
@@ -51,10 +63,54 @@ function Calculator() {
 		e.preventDefault()
 		setMethod(e.target.value)
 	}
-	const saveRecipeValue = (e) => {
+	// const saveRecipeValue = (e) => {
+	// 	e.preventDefault()
+	// 	setSaveRecipe(setSaveRecipe)
+	// 	console.log(saveRecipe)
+	// }
+
+	const submit = (e) => {
 		e.preventDefault()
-		setSaveRecipe(setSaveRecipe)
-		console.log(saveRecipe)
+		// postRecipe({
+		// 	coffeeRatio,
+		// 	waterRatio,
+		// 	coffeeMeasurement,
+		// 	waterMeasurement,
+		// 	comment,
+		// 	timer,
+		// 	method,
+		// })
+		fetch('http://localhost:8080/api/recipes', {
+			method: 'POST',
+			body: {
+				ratio: [4, 4],
+				coffeeToWater: [4, 4],
+				timer: '04:00',
+				method: 'method',
+				directions: 'comment',
+				author: 'egiiiiil',
+				name: "Egil's Standard",
+				beans: '3rd wave coffee',
+			},
+			// body: {
+			// 	ratio: [coffeeRatio, waterRatio],
+			// 	coffeeToWater: [coffeeMeasurement, waterMeasurement],
+			// 	timer: timer,
+			// 	method: method,
+			// 	directions: comment,
+			// 	author: 'egiiiiil',
+			// 	name: "Egil's Standard",
+			// 	beans: '3rd wave coffee',
+			// },
+		})
+		console.log(`
+		${coffeeRatio}, 
+		${waterRatio}, 
+		${coffeeMeasurement}, 
+		${waterMeasurement}, 
+		${comment}, 
+		${timer}, 
+		${method}`)
 	}
 	useEffect(() => {
 		console.log(`Coffee R: ${coffeeRatio}`)
@@ -77,15 +133,18 @@ function Calculator() {
 	useEffect(() => {
 		console.log(`Method is: ${method}`)
 	}, [method])
-	useEffect(() => {
-		console.log(`Saved valuie is: ${saveRecipe}`)
-	}, [saveRecipe])
+	// useEffect(() => {
+	// 	console.log(`Saved valuie is: ${saveRecipe}`)
+	// }, [saveRecipe])
 
 	return (
 		<>
-			<div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
+			<div className='col-start-2 w-full flex flex-col justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
 				{/* <LikeButton /> */}
-				<form className='w-full flex items-center justify-between flex-col'>
+				<form
+					onSubmit={submit}
+					className='w-full flex items-center justify-between flex-col'
+				>
 					<Ratio
 						coffeeRatio={coffeeRatio}
 						waterRatio={waterRatio}
@@ -103,7 +162,7 @@ function Calculator() {
 						timerInputValue={timerInputValue}
 						methodInputValue={methodInputValue}
 					/>
-					<SaveButton saveRecipeValue={saveRecipeValue} />
+					<SaveButton />
 				</form>
 			</div>
 		</>
