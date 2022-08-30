@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
+import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 
 const Menu = () => {
 	return (
 		<header className='flex col-span-3'>
 			<nav>
-				<ul>
+				<ul className='flex flex-row items-center'>
 					<li>
 						<Link to='/'>
 							<img
@@ -21,13 +22,16 @@ const Menu = () => {
 						<Link to='/calculator'>Calculator</Link>
 					</li>
 					<li>
-						<Link to='/login'>Login</Link>
+						<Link to='/login'>
+							<FaSignInAlt />
+							Login
+						</Link>
 					</li>
 					<li>
-						<Link to='/register'>Register</Link>
-					</li>
-					<li>
-						<Link to='/dashboard'>Dashboard</Link>
+						<Link to='/register'>
+							<FaUser />
+							Register
+						</Link>
 					</li>
 				</ul>
 			</nav>
