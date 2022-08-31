@@ -46,7 +46,9 @@ function Login() {
 								placeholder='Enter your password'
 								onChange={onChange}
 							/>
-							<button type='submit'>Submit</button>
+							<button type='submit' className='bg-black text-white'>
+								Submit
+							</button>
 						</form>
 					</section>
 				</div>

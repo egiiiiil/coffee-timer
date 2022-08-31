@@ -1,15 +1,40 @@
 import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { FaUser } from 'react-icons/fa'
+
+import Spinner from '../components/Spinner'
+
+import { register, reset } from '../features/auth/authSlice'
 
 function Register() {
 	const [formData, setFormData] = useState({
-		name: '',
+		username: '',
 		email: '',
 		password: '',
 		password2: '',
 	})
 
-	const { name, email, password, password2 } = formData
+	const { username, email, password, password2 } = formData
+
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+
+	const { user, isLoading, isError, isSuccess, message } = useSelector(
+		(state) => state.auth
+	)
+
+	useEffect(() => {
+		if (isError) {
+			toast.error(message)
+		}
+		if (isSuccess || user) {
+			navigate('/dashboard') // change to dashboard later
+		}
+		dispatch(reset)
+	}, [user, isError, isSuccess, message, navigate, dispatch])
+
 	const onChange = (e) => {
 		setFormData((prevState) => ({
 			...prevState,
@@ -18,6 +43,21 @@ function Register() {
 	}
 	const onSubmit = (e) => {
 		e.preventDefault()
+
+		if (password !== password2) {
+			toast.error('Passwords do not match')
+		} else {
+			const userData = {
+				username,
+				email,
+				password,
+			}
+			dispatch(register(userData))
+		}
+	}
+
+	if (isLoading) {
+		return <Spinner />
 	}
 
 	return (
@@ -30,16 +70,16 @@ function Register() {
 						</h1>
 						<p>Create the account:</p>
 						<form onSubmit={onSubmit}>
-							<label for='name'>Name:</label>
+							<label htmlFor='name'>Name:</label>
 							<input
 								type='text'
 								id='name'
-								name='name'
-								value={name}
+								name='username'
+								value={username}
 								placeholder='Enter your name'
 								onChange={onChange}
 							/>
-							<label for='email'>Email:</label>
+							<label htmlFor='email'>Email:</label>
 							<input
 								type='email'
 								id='email'
@@ -48,7 +88,7 @@ function Register() {
 								placeholder='Enter your email'
 								onChange={onChange}
 							/>
-							<label for='password'>Password:</label>
+							<label htmlFor='password'>Password:</label>
 							<input
 								type='password'
 								id='password'
@@ -57,7 +97,7 @@ function Register() {
 								placeholder='Enter your password'
 								onChange={onChange}
 							/>
-							<label for='password2'>Retype Password:</label>
+							<label htmlFor='password2'>Retype Password:</label>
 							<input
 								type='password'
 								id='password2'
@@ -66,7 +106,9 @@ function Register() {
 								placeholder='Confirm your password'
 								onChange={onChange}
 							/>
-							<button type='submit'>Submit</button>
+							<button type='submit' className='bg-black text-white'>
+								Submit
+							</button>
 						</form>
 					</section>
 				</div>

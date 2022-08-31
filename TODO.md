@@ -1,1 +1,4 @@
 - calculator select padding makes text invisible.
+- proxy for links?
+- css/styling all over
+- check response data for registration. (1:00:00)

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import './App.css'
 import Menu from './components/Menu'
@@ -14,7 +16,7 @@ import NoMatch from './pages/NoMatch'
 
 function App() {
 	return (
-		<div className='grid grid-cols-3 bg-gradient-to-r from-cyan-500 to-blue-500'>
+		<div className='h-screen w-screen grid grid-cols-3 bg-gradient-to-br from-indigo-200 via-red-200 to-yellow-100'>
 			<Menu />
 			<div className='w-auto' />
 			<Routes>
@@ -26,7 +28,7 @@ function App() {
 				<Route path='/login' element={<Login />} />
 				<Route path='*' element={<NoMatch />} />
 			</Routes>
-			<p>s</p>
+			<ToastContainer />
 			<div className='w-auto' />
 		</div>
 	)
