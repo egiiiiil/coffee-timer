@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 // import sendToDB from '../utils/sendToDB.js'
-import { postRecipe } from '../api/api.js'
 
 import Ratio from '../components/Ratio.js'
 import Measurement from '../components/Measurement.js'

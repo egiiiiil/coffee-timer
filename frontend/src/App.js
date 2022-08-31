@@ -1,3 +1,4 @@
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import './App.css'
@@ -25,7 +26,7 @@ function App() {
 				<Route path='/login' element={<Login />} />
 				<Route path='*' element={<NoMatch />} />
 			</Routes>
-
+			<p>s</p>
 			<div className='w-auto' />
 		</div>
 	)

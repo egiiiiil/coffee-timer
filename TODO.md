@@ -1,0 +1,1 @@
+- calculator select padding makes text invisible.

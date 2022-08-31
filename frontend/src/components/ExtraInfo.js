@@ -18,12 +18,15 @@ const ExtraInfo = ({
 				></input>
 				<label className='hidden h-0 w-0'>Comment</label>
 				<select
-					className='h-10 w-full bg-white p-5 rounded-xl text-center'
+					className='h-10 w-full bg-white text-black p-5 rounded-xl text-center'
 					name='brewtype'
 					id='brewtype'
 					placeholder='Method'
 					onChange={methodInputValue}
 				>
+					<option selected disabled>
+						Select option
+					</option>
 					<option value='fench-press'>French press</option>
 					<option value='cold-brew'>Cold brew</option>
 					<option value='siphon'>Siphon</option>
