@@ -16,7 +16,7 @@ function Feed() {
 			<>
 				<div className='col-start-2 w-full flex flex-row justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
 					<div className='w-full flex items-center justify-between flex-col'>
-						<p>No Feed</p>
+						<h1>No Feed</h1>
 					</div>
 				</div>
 			</>
@@ -26,7 +26,7 @@ function Feed() {
 			<>
 				<div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
 					<div className='w-full flex items-center justify-between flex-col'>
-						<p>Feed</p>
+						<h1>Feed</h1>
 						<ul>
 							{data && data.map((data, i) => <li key={i}>{data.name}</li>)}
 						</ul>

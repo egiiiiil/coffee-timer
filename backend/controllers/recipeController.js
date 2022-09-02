@@ -45,14 +45,26 @@ const postRecipe = async (req, res) => {
 		res.status(400)
 		throw new Error('Please add a post')
 	}
+
 	console.log('B', req.body)
 	try {
-		const { ratio, coffeeToWater, timer, method, directions, name, beans } =
-			req.body
-		const { author } = req.user._id
+		const {
+			coffeeRatio,
+			waterRatio,
+			coffeeMeasurement,
+			waterMeasurement,
+			timer,
+			method,
+			directions,
+			name,
+			beans,
+		} = req.body
+
 		const recipe = await recipeCollection.insertOne({
-			ratio: ratio,
-			coffeeToWater: coffeeToWater,
+			coffeeRatio: Number(coffeeRatio),
+			waterRatio: Number(waterRatio),
+			coffeeMeasurement: Number(coffeeMeasurement),
+			waterMeasurement: Number(waterMeasurement),
 			timer: timer,
 			method: method,
 			directions: directions,
