@@ -24,7 +24,6 @@ const getRecipes = async (req, res) => {
 // @route		GET /api/recipes
 // @access	Private
 const getMyRecipes = async (req, res) => {
-	console.log(req.user._id)
 	try {
 		const items = await recipeCollection
 			.find({ author: new mongodb.ObjectId(req.user?._id) })
@@ -40,7 +39,6 @@ const getMyRecipes = async (req, res) => {
 // @route		POST /api/recipes
 // @access	Private
 const postRecipe = async (req, res) => {
-	console.log('aaaaa', req.user._id)
 	if (!req.body) {
 		res.status(400)
 		throw new Error('Please add a post')
@@ -93,8 +91,17 @@ const updateRecipe = async (req, res) => {
 			throw new Error('Recipe not found')
 		}
 
-		const { ratio, coffeeToWater, timer, method, directions, name, beans } =
-			req.body
+		const {
+			coffeeRatio,
+			waterRatio,
+			coffeeMeasurement,
+			waterMeasurement,
+			timer,
+			method,
+			directions,
+			name,
+			beans,
+		} = req.body
 
 		const user = await userCollection.find({
 			_id: new mongodb.ObjectId(req.user._id),
@@ -116,11 +123,14 @@ const updateRecipe = async (req, res) => {
 			{ _id: new mongodb.ObjectId(recipeId) },
 			{
 				$set: {
-					ratio: ratio,
-					coffeeToWater: coffeeToWater,
+					coffeeRatio: Number(coffeeRatio),
+					waterRatio: Number(waterRatio),
+					coffeeMeasurement: Number(coffeeMeasurement),
+					waterMeasurement: Number(waterMeasurement),
 					timer: timer,
 					method: method,
 					directions: directions,
+					author: new mongodb.ObjectId(req.user?._id),
 					name: name,
 					beans: beans,
 				},
