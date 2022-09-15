@@ -22,6 +22,8 @@ Week 6:
 Week 7:
 
 - Assessment
+- login and register does the same w/ token -> now register does not include id
+- login saves email, id, token, and username in localStorage, should it?
 
 Week 8:
 
