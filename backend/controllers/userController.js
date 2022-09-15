@@ -10,6 +10,7 @@ const userCollection = collections.users
 // @access	Public
 const registerUser = async (req, res) => {
 	try {
+		console.log('reg user req body: ', req.body)
 		const { username, email, password } = req.body
 
 		if (!username || !email || !password) {
@@ -34,15 +35,17 @@ const registerUser = async (req, res) => {
 			password: hashedPassword,
 			date: new Date().toISOString(),
 		})
-
-		if (user) {
-			console.log(user)
+		console.log('inserted user', user)
+		const createdUser = await userCollection.findOne({ email })
+		console.log('created user', createdUser)
+		if (createdUser) {
+			console.log('reg user:', createdUser)
 			res.status(201).json({
-				id: user._id,
-				username: user.username,
-				email: user.email,
-				date: user.date,
-				token: generateToken(user._id),
+				id: createdUser._id,
+				username: createdUser.username,
+				email: createdUser.email,
+				date: createdUser.date,
+				token: generateToken(createdUser._id),
 			})
 		} else {
 			res.status(400)

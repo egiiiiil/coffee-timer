@@ -17,9 +17,8 @@ function Calculator() {
 		<>
 			<div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
 				<div className='w-full flex items-center justify-between flex-col'>
-					<h1>Dashboard</h1>
+					<h1>Calculator</h1>
 					<section>
-						<h2>Welcome {user && user.username}</h2>
 						<CalculatorForm />
 					</section>
 				</div>

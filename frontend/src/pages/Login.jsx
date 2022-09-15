@@ -60,7 +60,7 @@ function Login() {
 						</h1>
 						<p>Login to the account:</p>
 						<form onSubmit={onSubmit}>
-							<label for='email'>Email:</label>
+							<label htmlFor='email'>Email:</label>
 							<input
 								type='email'
 								id='email'
@@ -69,7 +69,7 @@ function Login() {
 								placeholder='Enter your email'
 								onChange={onChange}
 							/>
-							<label for='password'>Password:</label>
+							<label htmlFor='password'>Password:</label>
 							<input
 								type='password'
 								id='password'

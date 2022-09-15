@@ -3,37 +3,42 @@ GET http://localhost:8080/api/recipes
 
 ###
 GET http://localhost:8080/api/recipes/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDc1MDA0MjVmNDdiMDVlY2MzOTY4YyIsImlhdCI6MTY2MTQyMzY1NywiZXhwIjoxNjY0MDE1NjU3fQ.tpuz5JcWFfQW4SACl7WkNSjbV1N90m_P4YT7ckEOUB8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTA3NjFhZGE0NjVhYzQ2NjdiYTUyOCIsImlhdCI6MTY2MjAzNjY3NSwiZXhwIjoxNjY0NjI4Njc1fQ.Ki7yKuiXQlV1kXfbyVtLlNNRiu98GEfUS_ib4GonXNM
 
 ###
 POST http://localhost:8080/api/recipes
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDc1MDA0MjVmNDdiMDVlY2MzOTY4YyIsImlhdCI6MTY2MTQyMzY1NywiZXhwIjoxNjY0MDE1NjU3fQ.tpuz5JcWFfQW4SACl7WkNSjbV1N90m_P4YT7ckEOUB8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTg5YTdhNjE5NGNmZDI1YzQ4YTkxYSIsImlhdCI6MTY2MjU1NzIyOSwiZXhwIjoxNjY1MTQ5MjI5fQ.adSO3DMzIWlcq2GMl9PN1X1EFG_0qZupAabENWPkHEY
 
 {
-	"ratio": [1, 23],
-	"coffeeToWater": [1, 23],
-	"timer": "4:00",
-	"method": "v60",
+	"coffeeRatio": 1,
+	"waterRatio": 16,
+	"coffeeMeasurement": 16,
+	"waterMeasurement": 256,
+	"timer": "",
+	"method": "",
 	"directions": "",
-	"name": "Egil's Test not dog asdfasasdfasdfdfasdf5",
-	"beans": "3rd wave coffee"
+	"name": "NMÄLASD",
+	"beans": ""
 }
 
 ###
-PUT http://localhost:8080/api/recipes/63077270c0af9f98191beda8
+PUT http://localhost:8080/api/recipes/63189c4d202cec66cd62b5a0
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDc1MDA0MjVmNDdiMDVlY2MzOTY4YyIsImlhdCI6MTY2MTQyMzY1NywiZXhwIjoxNjY0MDE1NjU3fQ.tpuz5JcWFfQW4SACl7WkNSjbV1N90m_P4YT7ckEOUB8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTg5YTdhNjE5NGNmZDI1YzQ4YTkxYSIsImlhdCI6MTY2MjU1NzIyOSwiZXhwIjoxNjY1MTQ5MjI5fQ.adSO3DMzIWlcq2GMl9PN1X1EFG_0qZupAabENWPkHEY
 
 {
-	"ratio": [1, 23],
-	"coffeeToWater": [1, 23],
-	"timer": "4:00",
-	"method": "v60",
+	"coffeeRatio": 1,
+	"waterRatio": 16,
+	"coffeeMeasurement": 16,
+	"waterMeasurement": 256,
+	"timer": "",
+	"method": "",
 	"directions": "",
-	"name": "Egil's Test",
-	"beans": "3rd wave coffee"
+	"name": "NMÄLASD2",
+	"beans": ""
 }
+
 
 ###
 DELETE  http://localhost:8080/api/recipes/63077270c0af9f98191beda8
@@ -55,7 +60,7 @@ POST http://localhost:8080/api/users/login
 Content-Type: application/json
 
 {
-	"email": "egil@alsoasdasdnew.se",
+	"email": "egil@alsoasdaadsfasdfsdnew.se",
 	"password": "egil1234"
 }
 
