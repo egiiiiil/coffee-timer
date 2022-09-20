@@ -1,39 +1,61 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import {Content, DashboardCardContainer, DashboardContent} from '../styled/Content'
+import Spinner from '../components/Spinner'
+import FeedItem from '../components/FeedItem'
+//import { getRecipes, reset } from '../features/recipe/recipeSlice'
+import { getEveryones, reset } from '../features/recipe/recipeSlice'
 
-function Feed() {
-	const [data, setData] = useState(null)
+function Dashboard() {
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
 
-	useEffect((data) => {
-		fetch('http://localhost:8080/api/recipes')
-			.then((response) => response.json())
-			.then(setData)
-	}, [])
+	const { 
+		recipes, 
+		isLoading, 
+		isError, 
+		message 
+	} = useSelector((state) => state.recipes)
+
+
+
 	useEffect(() => {
-		console.log(data)
-	}, [data])
-	if (!data) {
-		return (
-			<>
-				<div className='col-start-2 w-full flex flex-row justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
-					<div className='w-full flex items-center justify-between flex-col'>
-						<h1>No Feed</h1>
-					</div>
-				</div>
-			</>
-		)
-	} else {
-		return (
-			<>
-				<div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
-					<div className='w-full flex items-center justify-between flex-col'>
-						<h1>Feed</h1>
-						<ul>
-							{data && data.map((data, i) => <li key={i}>{data.name}</li>)}
-						</ul>
-					</div>
-				</div>
-			</>
-		)
+		if(isError) {
+			console.log(message)
+		}
+
+
+		dispatch(getEveryones()) //31:47, error
+
+		return () => {
+			dispatch(reset())
+		}
+	}, [navigate, isError, message, dispatch])
+	if(isLoading) {
+		return <Spinner />
 	}
+	return (
+		<>
+			<Content>
+			{/* <div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'> */}
+				<DashboardContent>
+					<h1>Feed</h1>
+					<DashboardCardContainer>
+
+
+						
+						{recipes.length > 0 ? (
+						<>
+							{recipes && recipes.map((recipes, i) => (<FeedItem key={recipes._id} recipes={recipes}/>))} 
+						</>
+						) : (<h3>No recipes</h3>) }
+					</DashboardCardContainer>
+				</DashboardContent>
+			{/* </div> */}
+			</Content>
+		</>
+	)
 }
-export default Feed
+
+export default Dashboard

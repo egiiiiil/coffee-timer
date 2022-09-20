@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createRecipe } from '../features/recipe/recipeSlice'
+import { Form } from '../styled/Content'
 
 function CalculatorForm() {
 	const [formData, setFormData] = useState({
@@ -55,68 +56,76 @@ function CalculatorForm() {
 
 	return (
 		<>
-			<section>
-				<form
+				<Form
 					onSubmit={onSubmit}
-					className='w-full flex items-center justify-between flex-col'
 				>
-					<div className='w-full [&>*]:mb-4'>
+					<div>
 						<h2>Ratio</h2>
-						
-							{/* <form className='w-40 flex items-center justify-between flex-row'> */}
-							<label className='hidden h-0 w-0'>Coffe</label>
-							<input
-								className='h-10 w-28 bg-white p-5 rounded-xl text-center'
-								placeholder='Coffee'
-								value={coffeeRatio}
-								id='coffeeRatio'
-								name='coffeeRatio'
-								onChange={onChange}
-								type='number'
-							></input>
-							<span>:</span>
-							<label className='hidden h-0 w-0'>Water</label>
-							<input
-								className='h-10 w-28 bg-white p-5 rounded-xl text-center'
-								placeholder='Water'
-								value={waterRatio}
-								id='waterRatio'
-								name='waterRatio'
-								onChange={onChange}
-								type='number'
-							></input>
+						<div className='ratio-measurement__container'>
+							<span className='ratio-measurement__container--span'>
+								<label>Coffee</label>
+								<input
+									className='form__input--small'
+									placeholder='Coffee'
+									value={coffeeRatio}
+									id='coffeeRatio'
+									name='coffeeRatio'
+									onChange={onChange}
+									type='number'
+								></input>
+								</span>
+								<span>:</span>
+								<span className='ratio-measurement__container--span'>
+									<label >Water</label>
+									<input
+										className='form__input--small'
+										placeholder='Water'
+										value={waterRatio}
+										id='waterRatio'
+										name='waterRatio'
+										onChange={onChange}
+										type='number'
+									></input>
+								</span>
+						</div>
+
+							
 						</div>
 					
-					<div className='w-full [&>*]:mb-4'>
+					<div>
 						<h2>Measurement</h2>
-						
-							<label className='hidden h-0 w-0'>Coffe</label>
-							<input
-								className='h-10 w-28 bg-white p-5 rounded-xl text-center'
-								placeholder='Coffee'
-								value={coffeeMeasurement}
-								id='coffeeMeasurement'
-								name='coffeeMeasurement'
-								onChange={onChange}
-								type='number'
-							></input>
+						<div className='ratio-measurement__container'>
+							<span className='ratio-measurement__container--span'>
+								<label>Coffee</label>
+								<input
+									className='form__input--small'
+									placeholder='Coffee'
+									value={coffeeMeasurement}
+									id='coffeeMeasurement'
+									name='coffeeMeasurement'
+									onChange={onChange}
+									type='number'
+								></input>
+							</span>
 							<span>:</span>
-							<label className='hidden h-0 w-0'>Water</label>
-							<input
-								className='h-10 w-28 bg-white p-5 rounded-xl text-center'
-								placeholder='Water'
-								value={waterMeasurement}
-								id='waterMeasurement'
-								name='waterMeasurement'
-								onChange={onChange}
-								type='number'
-							></input>
-						
+							<span className='ratio-measurement__container--span'>
+								<label >Water</label>
+								<input
+									className='form__input--small'
+									placeholder='Water'
+									value={waterMeasurement}
+									id='waterMeasurement'
+									name='waterMeasurement'
+									onChange={onChange}
+									type='number'
+								></input>
+							</span>
+							</div>
 					</div>
 
-						<label className='hidden h-0 w-0'>Timer:</label>
+						<label >Timer:</label>
 						<input
-							className='h-10 w-full bg-white p-5 rounded-xl text-center'
+							className='form__input--big'
 							type='time'
 							id='timer'
 							name='timer'
@@ -125,9 +134,9 @@ function CalculatorForm() {
 							max='24:00'
 							onChange={onChange}
 						></input>
-						<label className='hidden h-0 w-0'>Comment</label>
+						<label>Brewing method</label>
 						<select
-							className='h-10 w-full bg-white text-black  rounded-xl text-center'
+							className='form__input--select'
 							name='method'
 							id='method'
 							value={method}
@@ -150,9 +159,9 @@ function CalculatorForm() {
 							<option value='other'>Other</option>
 						</select>
 
-						<label className='hidden h-0 w-0'>Comment</label>
+						<label className=''>Comment</label>
 						<textarea
-							className='h-40 w-full bg-white p-5 rounded-xl resize-none'
+							className='form__input--textarea'
 							placeholder='Brewing instructions'
 							id='directions'
 							value={directions}
@@ -160,9 +169,9 @@ function CalculatorForm() {
 							onChange={onChange}
 							type='text'
 						></textarea>
-					<label className='hidden h-0 w-0'>Name recipe:</label>
+					<label className=''>Name recipe:</label>
 					<input
-						className='h-10 w-full bg-white p-5 rounded-xl text-left'
+						className='form__input--big'
 						type='text'
 						id='name'
 						name='name'
@@ -170,9 +179,9 @@ function CalculatorForm() {
 						placeholder='Name recipe'
 						onChange={onChange}
 					></input>
-					<label className='hidden h-0 w-0'>Name beans:</label>
+					<label className=''>Name beans:</label>
 					<input
-						className='h-10 w-full bg-white p-5 rounded-xl text-left'
+						className='form__input--big'
 						type='text'
 						id='beans'
 						name='beans'
@@ -180,11 +189,10 @@ function CalculatorForm() {
 						placeholder='Name beans'
 						onChange={onChange}
 					></input>
-					<button className='h-11 w-full bg-black text-white p-5 rounded-xl text-center p-0'>
+					<button className='form__input--button'>
 						Save recipe
 					</button>
-				</form>
-			</section>
+				</Form>
 		</>
 	)
 }

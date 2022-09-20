@@ -1,18 +1,15 @@
 import { useDispatch } from 'react-redux'
 import { deleteRecipe } from '../features/recipe/recipeSlice'
-import { FaTrashAlt, FaCoffee } from 'react-icons/fa'
+import { FaCoffee } from 'react-icons/fa'
 import { DashboardCard } from '../styled/Content'
 import brewMethod from '../utils/brewMethod'
 
-const RecipeItem = ({recipes}) => {
-	const dispatch = useDispatch()
-
-
+const FeedItem = ({recipes}) => {
+	console.log(recipes.coffeeRatio)
 	return (
 		<DashboardCard>
 			<div>
-			<h2>{recipes.name}</h2>
-				<button onClick={() => dispatch(deleteRecipe(recipes._id))}><FaTrashAlt /></button>
+				<h2>{recipes.name}</h2>
 			</div>
 			<p>{recipes.coffeeRatio}:{recipes.waterRatio}</p>
 			<p>{recipes.coffeeMeasurement}:{recipes.waterMeasurement}</p>
@@ -23,6 +20,4 @@ const RecipeItem = ({recipes}) => {
 		</DashboardCard>
 	)
 }
-export default RecipeItem
-
-
+export default FeedItem

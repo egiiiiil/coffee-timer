@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
-
+import { Content, Form } from '../styled/Content'
 import Spinner from '../components/Spinner'
 
 import { FaSignInAlt } from 'react-icons/fa'
@@ -52,16 +52,18 @@ function Login() {
 
 	return (
 		<>
-			<div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
+			<Content>
+			{/* <div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'> */}
 				<div className='w-full flex items-center justify-between flex-col'>
 					<section>
 						<h1>
 							<FaSignInAlt /> Login
 						</h1>
 						<p>Login to the account:</p>
-						<form onSubmit={onSubmit}>
+						<Form onSubmit={onSubmit}>
 							<label htmlFor='email'>Email:</label>
 							<input
+								className='form__input--big'
 								type='email'
 								id='email'
 								name='email'
@@ -71,6 +73,7 @@ function Login() {
 							/>
 							<label htmlFor='password'>Password:</label>
 							<input
+								className='form__input--big'
 								type='password'
 								id='password'
 								name='password'
@@ -78,13 +81,14 @@ function Login() {
 								placeholder='Enter your password'
 								onChange={onChange}
 							/>
-							<button type='submit' className='bg-black text-white'>
+							<button className='form__input--button' type='submit'>
 								Submit
 							</button>
-						</form>
+						</Form>
 					</section>
 				</div>
-			</div>
+			{/* </div> */}
+			</Content>
 		</>
 	)
 }
