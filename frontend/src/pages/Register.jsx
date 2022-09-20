@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaUser } from 'react-icons/fa'
-
+import { Content, Form } from '../styled/Content'
 import Spinner from '../components/Spinner'
 
 import { register, reset } from '../features/auth/authSlice'
@@ -30,7 +30,7 @@ function Register() {
 			toast.error(message)
 		}
 		if (isSuccess || user) {
-			navigate('/dashboard') // change to dashboard later
+			navigate('/dashboard')
 		}
 		dispatch(reset)
 	}, [user, isError, isSuccess, message, navigate, dispatch])
@@ -62,16 +62,18 @@ function Register() {
 
 	return (
 		<>
-			<div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
+			<Content>
+			{/* <div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'> */}
 				<div className='w-full flex items-center justify-between flex-col'>
 					<section>
 						<h1>
 							<FaUser /> Register
 						</h1>
 						<p>Create the account:</p>
-						<form onSubmit={onSubmit}>
+						<Form onSubmit={onSubmit}>
 							<label htmlFor='name'>Name:</label>
 							<input
+								className='form__input--big'
 								type='text'
 								id='name'
 								name='username'
@@ -81,6 +83,7 @@ function Register() {
 							/>
 							<label htmlFor='email'>Email:</label>
 							<input
+								className='form__input--big'
 								type='email'
 								id='email'
 								name='email'
@@ -90,6 +93,7 @@ function Register() {
 							/>
 							<label htmlFor='password'>Password:</label>
 							<input
+							className='form__input--big'
 								type='password'
 								id='password'
 								name='password'
@@ -99,6 +103,7 @@ function Register() {
 							/>
 							<label htmlFor='password2'>Retype Password:</label>
 							<input
+							className='form__input--big'
 								type='password'
 								id='password2'
 								name='password2'
@@ -106,13 +111,14 @@ function Register() {
 								placeholder='Confirm your password'
 								onChange={onChange}
 							/>
-							<button type='submit' className='bg-black text-white'>
+							<button className='form__input--button' type='submit'>
 								Submit
 							</button>
-						</form>
+						</Form>
 					</section>
 				</div>
-			</div>
+			{/* </div> */}
+			</Content>
 		</>
 	)
 }

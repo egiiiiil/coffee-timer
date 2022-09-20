@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
+import { FaSignInAlt, FaSignOutAlt, FaUser, FaCalculator } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+import { Header, Navigation, Ul } from '../styled/Navigation'
 
 const Menu = () => {
 	const navigate = useNavigate()
@@ -15,9 +16,9 @@ const Menu = () => {
 	}
 
 	return (
-		<header className='flex col-span-3'>
-			<nav>
-				<ul className='flex flex-row items-center'>
+		<Header>
+			<Navigation>
+				<Ul>
 					<li>
 						<Link to='/'>
 							<img
@@ -27,11 +28,12 @@ const Menu = () => {
 						</Link>
 					</li>
 
+
 					<li>
-						<Link to='/about'>About</Link>
-					</li>
-					<li>
-						<Link to='/calculator'>Calculator</Link>
+						<Link to='/calculator'>
+							<FaCalculator />
+							Calculator
+						</Link>
 					</li>
 					{user ? (
 						<>
@@ -40,6 +42,12 @@ const Menu = () => {
 									<FaSignOutAlt />
 									Logout
 								</button>
+							</li>
+							<li>
+								<Link to='/dashboard'>
+									<FaUser />
+									User
+								</Link>
 							</li>
 						</>
 					) : (
@@ -58,9 +66,9 @@ const Menu = () => {
 							</li>
 						</>
 					)}
-				</ul>
-			</nav>
-		</header>
+				</Ul>
+			</Navigation>
+		</Header>
 	)
 }
 export default Menu

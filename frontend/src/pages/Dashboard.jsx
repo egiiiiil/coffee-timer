@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { Content, DashboardCardContainer, DashboardContent } from '../styled/Content'
 import Spinner from '../components/Spinner'
 import RecipeItem from '../components/RecipeItem'
-//import { getRecipes, reset } from '../features/recipe/recipeSlice'
+
 import { getRecipes, reset } from '../features/recipe/recipeSlice'
 
 function Dashboard() {
@@ -38,22 +39,24 @@ function Dashboard() {
 	}
 	return (
 		<>
-			<div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'>
-				<div className='w-full flex items-center justify-between flex-col'>
+			<Content>
+			{/* <div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'> */}
+				<DashboardContent>
 					<h1>Dashboard</h1>
 						<h2>Welcome {user && user.username}</h2>
-					<section>
+					<DashboardCardContainer>
 
 
 						
 						{recipes.length > 0 ? (
 						<>
-							{recipes.map((recipes, i) => (<RecipeItem key={recipes._id} recipes={recipes}/>))} 
+							{recipes && recipes.map((recipes, i) => (<RecipeItem key={recipes._id} recipes={recipes}/>))} 
 						</>
 						) : (<h3>No recipes</h3>) }
-					</section>
-				</div>
-			</div>
+					</DashboardCardContainer>
+				</DashboardContent>
+			{/* </div> */}
+			</Content>
 		</>
 	)
 }
