@@ -20,7 +20,28 @@ const getRecipes = async (req, res) => {
 		console.log(err.message)
 	}
 }
-// @desc		Get Recipes
+
+// @desc		Get One Recipe
+// @route 	GET /api/recipes:id
+// @access	Private
+const getOneRecipe = async (req, res) => {
+	const recipeId = req.params.id
+	try {
+		const recipe = await recipeCollection.findOne({
+			_id: new mongodb.ObjectId(recipeId),
+		})
+		if (!recipe) {
+			res.status(404)
+			throw new Error('Recipe not found')
+		}
+		res.status(200).json(recipe)
+	} catch (err) {
+		console.log(err.message)
+	}
+	//res.status(200).json({ message: `Delete Recipe ${req.params.id}` })
+}
+
+// @desc		Get My Recipes
 // @route		GET /api/recipes
 // @access	Private
 const getMyRecipes = async (req, res) => {
@@ -143,7 +164,7 @@ const updateRecipe = async (req, res) => {
 	}
 }
 
-// @desc		Delete goal
+// @desc		Delete Recipe
 // @route 	DELETE /api/recipes:id
 // @access	Private
 const deleteRecipe = async (req, res) => {
@@ -184,4 +205,11 @@ const deleteRecipe = async (req, res) => {
 	//res.status(200).json({ message: `Delete Recipe ${req.params.id}` })
 }
 
-export { getRecipes, getMyRecipes, postRecipe, updateRecipe, deleteRecipe }
+export {
+	getRecipes,
+	getOneRecipe,
+	getMyRecipes,
+	postRecipe,
+	updateRecipe,
+	deleteRecipe,
+}
