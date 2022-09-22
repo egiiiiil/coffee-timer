@@ -28,7 +28,7 @@ function Dashboard() {
 			navigate('/login')
 		}
 
-		dispatch(getRecipes()) //31:47, error
+		dispatch(getRecipes()) 
 
 		return () => {
 			dispatch(reset())
@@ -40,7 +40,7 @@ function Dashboard() {
 	return (
 		<>
 			<Content>
-			{/* <div className='col-start-2 w-full flex flex-row-reverse justify-between items-start bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg'> */}
+
 				<DashboardContent>
 					<h1>Dashboard</h1>
 						<h2>Welcome {user && user.username}</h2>
@@ -55,7 +55,7 @@ function Dashboard() {
 						) : (<h3>No recipes</h3>) }
 					</DashboardCardContainer>
 				</DashboardContent>
-			{/* </div> */}
+
 			</Content>
 		</>
 	)

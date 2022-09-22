@@ -35,4 +35,7 @@ Week 8:
       `let waterMeasurementInput = (waterRatio / coffeeRatio) * coffeeMeasurement`
 - [ ] Remove Tailwind
 - [ ] Testing
+- [ ] Fix spinner
 - [ ] GitHub Action workflow
+
+

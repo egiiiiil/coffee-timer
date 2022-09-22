@@ -45,13 +45,33 @@ export const getEveryones = createAsyncThunk(
 		}
 	}
 )
-//Get user recipes
+
+//Get all recipes
 export const getRecipes = createAsyncThunk(
 	'recipe/getAll',
 	async (_, thunkAPI) => {
 		try {
 			const token = thunkAPI.getState().auth.user.token
 			return await recipeService.getRecipes(token)
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString()
+			return thunkAPI.rejectWithValue(message)
+		}
+	}
+)
+
+//Get one recipe
+export const getOneRecipe = createAsyncThunk(
+	'recipe/getOne',
+	async (id, thunkAPI) => {
+		try {
+			const token = thunkAPI.getState().auth.user.token
+			return await recipeService.getOneRecipe(id, token)
 		} catch (error) {
 			const message =
 				(error.response &&
@@ -126,6 +146,19 @@ export const recipeSlice = createSlice({
 				state.recipes = action.payload
 			})
 			.addCase(getRecipes.rejected, (state, action) => {
+				state.isLoading = false
+				state.isError = true
+				state.message = action.payload
+			})
+			.addCase(getOneRecipe.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(getOneRecipe.fulfilled, (state, action) => {
+				state.isLoading = false
+				state.isSuccess = true
+				state.recipes = action.payload
+			})
+			.addCase(getOneRecipe.rejected, (state, action) => {
 				state.isLoading = false
 				state.isError = true
 				state.message = action.payload

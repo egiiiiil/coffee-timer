@@ -2,6 +2,10 @@
 GET http://localhost:8080/api/recipes
 
 ###
+GET  http://localhost:8080/api/recipes/6329ac3799c6de2c82595497
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDc1MDA0MjVmNDdiMDVlY2MzOTY4YyIsImlhdCI6MTY2MTQyMzY1NywiZXhwIjoxNjY0MDE1NjU3fQ.tpuz5JcWFfQW4SACl7WkNSjbV1N90m_P4YT7ckEOUB8
+
+###
 GET http://localhost:8080/api/recipes/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMTA3NjFhZGE0NjVhYzQ2NjdiYTUyOCIsImlhdCI6MTY2MjAzNjY3NSwiZXhwIjoxNjY0NjI4Njc1fQ.Ki7yKuiXQlV1kXfbyVtLlNNRiu98GEfUS_ib4GonXNM
 

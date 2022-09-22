@@ -11,6 +11,7 @@ import Menu from './components/Menu'
 
 import Calculator from './pages/Calculator'
 import Feed from './pages/Feed'
+import Recipe from './pages/Recipe'
 import About from './pages/About'
 import Dashboard from './pages/Dashboard'
 import Register from './pages/Register'
@@ -40,7 +41,7 @@ const ContainerDiv = styled.div`
 		src: url('./fonts/RobotoFlex.ttf');
 	}
 	body {
-		font-family: 'RobotFlex', serif;
+		font-family: 'RobotoFlex', serif;
 	}
 	h1 {
 		font-size: 2em;
@@ -72,6 +73,7 @@ function App() {
 				<Route path='/dashboard' element={<Dashboard />} />
 				<Route path='/register' element={<Register />} />
 				<Route path='/login' element={<Login />} />
+				<Route path='/recipe/:id' element={<Recipe />} />
 				<Route path='*' element={<NoMatch />} />
 			</Routes>
 			<ToastContainer />

@@ -11,7 +11,7 @@ const RecipeItem = ({recipes}) => {
 	return (
 		<DashboardCard>
 			<div>
-			<h2>{recipes.name}</h2>
+				<h2>{recipes.name}</h2>
 				<button onClick={() => dispatch(deleteRecipe(recipes._id))}><FaTrashAlt /></button>
 			</div>
 			<p>{recipes.coffeeRatio}:{recipes.waterRatio}</p>

@@ -13,11 +13,25 @@ const createRecipe = async (recipeData, token) => {
 	const response = await axios.post(API_URL, recipeData, config)
 	return response.data
 }
+
 // Get everyones recipes
 const getAllRecipes = async () => {
 	const response = await axios.get(API_URL)
 	return response.data
 }
+
+// Get one recipe
+const getOneRecipe = async (recipeId, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	}
+	const response = await axios.get(API_URL + recipeId, config)
+
+	return response.data
+}
+
 // Get user recipes
 const getRecipes = async (token) => {
 	const config = {
@@ -29,6 +43,7 @@ const getRecipes = async (token) => {
 
 	return response.data
 }
+
 // Delete user recipe
 const deleteRecipe = async (recipeId, token) => {
 	const config = {
@@ -44,6 +59,7 @@ const deleteRecipe = async (recipeId, token) => {
 const recipeService = {
 	createRecipe,
 	getAllRecipes,
+	getOneRecipe,
 	getRecipes,
 	deleteRecipe,
 }
